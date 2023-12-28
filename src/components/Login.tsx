@@ -38,6 +38,16 @@ export const Login = () => {
     });
   };
 
+  const loginClick = () => {
+    dispatch({
+      type: "login",
+      payload: {
+        userName: "alberto@gmail.com ",
+        name: "Alberto .A",
+      },
+    });
+  };
+
   if (validando) {
     return (
       <div className="row justify-content-center align-content-center vh-100">
@@ -60,9 +70,13 @@ export const Login = () => {
       )}
 
       {!token ? (
-        <button className="btn btn-primary">Login</button>
+        <button className="btn btn-primary"
+         onClick={loginClick}        
+        >Login</button>
       ) : (
-        <button className="btn btn-danger">Logout</button>
+        <button className="btn btn-danger"
+        onClick={()=> dispatch({type:'logout'})} 
+        >Logout</button>
       )}
     </>
   );

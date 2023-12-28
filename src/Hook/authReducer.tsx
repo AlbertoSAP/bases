@@ -5,10 +5,18 @@ interface AuthState {
     userName: string;
     name: string;
   }
+
+  type LoginPayload = {
+    userName:string;
+    name:string;
+  }
   
-  type AuthAction = { type: "logout" };
+type AuthAction = 
+  | { type: "logout" }
+  | { type: "login", payload:LoginPayload } 
 
   const authReducer = (state: AuthState, action: AuthAction): AuthState => {
+
     switch (action.type) {
       case "logout":
         return {
@@ -17,6 +25,15 @@ interface AuthState {
           userName: "",
           name: "",
         };
+        case "login":
+        const {userName,name} = action.payload
+        return {
+        ...state,
+        name,
+        userName,
+        token:'auth=true,token-test',
+        validando:false
+        }
   
       default:
         return state;
