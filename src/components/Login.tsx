@@ -8,6 +8,7 @@ const initialState = {
   name: "",
 };
 
+// component Login
 export const Login = () => {
   const [{ validando, token, name }, dispatch] = useReducer(
     authReducer,
@@ -19,6 +20,24 @@ export const Login = () => {
       dispatch({ type: "logout" });
     }, 2000);
   }, []);
+
+  // login click
+  const loginClick = () => {
+    dispatch({
+      type: "login",
+      payload: {
+        name: "Mey",
+        userName: "Manchas",
+      },
+    });
+  };
+
+  // logout
+  const logoutClick = ()=>{
+    dispatch({
+      type:'logout' 
+    })
+  }
 
   const spinnerWithAllColor = () => {
     const bootstrapColor = [
@@ -60,9 +79,9 @@ export const Login = () => {
       )}
 
       {!token ? (
-        <button className="btn btn-primary">Login</button>
+        <button className="btn btn-primary" onClick={loginClick}>Login</button>
       ) : (
-        <button className="btn btn-danger">Logout</button>
+        <button className="btn btn-danger" onClick={logoutClick} >Logout</button>
       )}
     </>
   );
